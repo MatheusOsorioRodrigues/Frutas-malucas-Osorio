@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgtvqvib7cxd4"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_vta66"]
+[ext_resource type="Texture2D" uid="uid://dmeuur5xvbpt6" path="res://sprites/BG/menu_game.jpg" id="2_jpeuq"]
+[ext_resource type="Texture2D" uid="uid://b1d2sjetgroc7" path="res://sprites/UI/quit-button.png" id="3_1r4un"]
+[ext_resource type="Texture2D" uid="uid://dr3yly51dw7xh" path="res://sprites/UI/options-button_active.png" id="4_mpahc"]
+[ext_resource type="Texture2D" uid="uid://cedxsmmyxlvie" path="res://sprites/UI/play-buttom.png" id="5_hyjf3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p32tp"]
+load_path = "res://.godot/imported/options-button_active.png-5e9bca198a866c11fbe904b20638a9b2.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eyck"]
+load_path = "res://.godot/imported/quit-button.png-58a9ec95effe45235f20c906f48ef58d.ctex"
+
+[sub_resource type="ImageTexture" id="ImageTexture_5xqkl"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vta66")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Background-Menu" type="Sprite2D" parent="Buttons"]
+position = Vector2(45, 60.5)
+scale = Vector2(0.153846, 0.194336)
+texture = ExtResource("2_jpeuq")
+
+[node name="ConfigShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(77.124, 13)
+scale = Vector2(0.0424844, 0.0429687)
+texture = SubResource("CompressedTexture2D_p32tp")
+
+[node name="ConfigButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 67.0
+offset_top = 3.0
+offset_right = 579.0
+offset_bottom = 515.0
+scale = Vector2(0.04, 0.04)
+texture_normal = ExtResource("4_mpahc")
+
+[node name="QuitShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+position = Vector2(13, 13)
+scale = Vector2(0.0390625, 0.0390625)
+texture = SubResource("CompressedTexture2D_1eyck")
+
+[node name="QuitButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 515.0
+offset_bottom = 515.0
+scale = Vector2(0.04, 0.04)
+texture_normal = ExtResource("3_1r4un")
+
+[node name="PlayShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+position = Vector2(21, 125)
+scale = Vector2(54, 19)
+texture = SubResource("ImageTexture_5xqkl")
+
+[node name="PlayButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 7.0
+offset_top = 122.0
+offset_right = 729.0
+offset_bottom = 404.0
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("5_hyjf3")
+ignore_texture_size = true
+
+[connection signal="pressed" from="Buttons/ConfigButton" to="." method="_on_config_button_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]

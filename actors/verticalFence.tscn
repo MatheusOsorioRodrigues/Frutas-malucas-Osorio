@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu7d2rg6wyfh4"]
+
+[ext_resource type="Texture2D" uid="uid://cteey5b01l17c" path="res://sprites/fence.png" id="1_kwmbg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_harwi"]
+texture = ExtResource("1_kwmbg")
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+1:0/0 = 0
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+1:4/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5e1fb"]
+sources/0 = SubResource("TileSetAtlasSource_harwi")
+
+[sub_resource type="GDScript" id="GDScript_3sku3"]
+script/source = "extends Node2D
+
+# Enum para os tipos de cerca
+enum FenceType {
+	FULL,        # Cercado por completo
+	VERTICAL,    # Fechado em cima e embaixo
+	HORIZONTAL   # Fechado nos lados
+}
+
+# Referência ao TileMap
+@onready var tilemap = $TileMap
+
+# IDs dos tiles no TileSet
+var tile_ids = {
+	FenceType.FULL: 0,         # ID do tile cheio no TileSet
+	FenceType.VERTICAL: 1,     # ID do tile para cima e baixo
+	FenceType.HORIZONTAL: 2    # ID do tile para os lados
+}
+
+# Tipo atual da cerca
+var current_type: FenceType = FenceType.FULL
+
+# Função para configurar o tipo da cerca
+func set_fence_type(fence_type: FenceType):
+	current_type = fence_type
+	build_fence()
+
+# Construir a cerca com base no tipo
+func build_fence():
+	tilemap.clear()  # Limpar o TileMap
+
+	match current_type:
+		FenceType.FULL:
+			# Preencher como um quadrado completo (2x2, por exemplo)
+			for x in range(2):
+				for y in range(2):
+					tilemap.set_cell(x, y, tile_ids[FenceType.FULL])
+
+		FenceType.VERTICAL:
+			# Fechar apenas em cima e embaixo
+			tilemap.set_cell(0, 0, tile_ids[FenceType.VERTICAL])  # Cima
+			tilemap.set_cell(0, 1, tile_ids[FenceType.VERTICAL])  # Baixo
+
+		FenceType.HORIZONTAL:
+			# Fechar apenas nos lados
+			tilemap.set_cell(0, 0, tile_ids[FenceType.HORIZONTAL])  # Esquerda
+			tilemap.set_cell(1, 0, tile_ids[FenceType.HORIZONTAL])  # Direita
+"
+
+[node name="Fence" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(54, -11)
+scale = Vector2(0.3, 0.3)
+tile_set = SubResource("TileSet_5e1fb")
+format = 2
+layer_0/tile_data = PackedInt32Array(458740, 131072, 1, 458745, 327680, 3, 393209, 327680, 4, 393204, 131072, 4, 327668, 131072, 3, 327669, 196608, 3, 262132, 131072, 2, 262133, 196608, 2, 196596, 131072, 1, 131060, 131072, 0, 131065, 327680, 2, 196601, 327680, 3, 262137, 327680, 4, 262136, 131072, 2, 327672, 131072, 3, 327673, 196608, 3, 131064, 131072, 0, 196600, 131072, 1, 458744, 131072, 5, 393208, 131072, 4, 131061, 327680, 2, 196597, 327680, 3, 393205, 327680, 4, 458741, 327680, 5)
+script = SubResource("GDScript_3sku3")

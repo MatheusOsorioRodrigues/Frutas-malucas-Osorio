@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://s5ft2fvdoua3"]
+
+[ext_resource type="PackedScene" uid="uid://m5fhii5ho4lx" path="res://actors/tile_background.tscn" id="1_oby1e"]
+[ext_resource type="Script" path="res://scripts/bright.gd" id="1_yrw7p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u7b6u"]
+blend_mode = 1
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yrw7p")
+
+[node name="Bright" parent="." instance=ExtResource("1_oby1e")]
+self_modulate = Color(1, 0.843137, 0, 1)
+material = SubResource("CanvasItemMaterial_u7b6u")
+position = Vector2(2, 2)
+scale = Vector2(1, 1)

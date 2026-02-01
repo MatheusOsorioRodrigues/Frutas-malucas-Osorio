@@ -1,0 +1,218 @@
+[gd_scene load_steps=21 format=3 uid="uid://dl54xhkraoptj"]
+
+[ext_resource type="Shader" path="res://shaders/glow_character.gdshader" id="1_bfis2"]
+[ext_resource type="Texture2D" uid="uid://b8fcftyqyb4ne" path="res://sprites/Others/circle_fade.jpg" id="2_nd8de"]
+[ext_resource type="Texture2D" uid="uid://bokxi5rftgmd3" path="res://sprites/Characters/Char_Florest/Attack.png" id="3_ifpuj"]
+[ext_resource type="Texture2D" uid="uid://dnk2v01uvg62i" path="res://sprites/Characters/Char_Florest/Idle.png" id="4_kiew2"]
+
+[sub_resource type="GDScript" id="GDScript_dhviv"]
+script/source = "extends CharacterBody2D
+
+@export var characterPath: String
+@export var characterTexture: AnimatedSprite2D
+var board: Area2D
+signal power_used(wrong: int, candidate: int)
+
+
+func _ready() -> void:
+	$AnimatedSprite2D.play(\"idle\")
+	$EffectChargedPower/CharacterShade.play(\"idle\")
+	
+func find_index_first_fence() -> int:
+	for index in range(board.tile_count):
+		if typeof(board.fences[index]) != 0: #Se o tipo não for nulo
+			return index
+		
+	return -1
+	
+func use_power():
+	var index_fence = find_index_first_fence() #Encontra a primeira cerca do tabuleiro
+	if index_fence != -1:
+		board.fences[index_fence].queue_free() #Retira o nó da cerca da cena
+		board.fences[index_fence] = null #Modifica o vetor que tem as instâncias das cercas
+		board.restrictions[index_fence] = \"free\" #Altera no vetor de restrição, o valor da restrição na posição para livre
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if board != null and board.power_charges > 0: #Caso o board tenha carregado e o poder ainda não foi usado
+			#Inicia animação de ataque
+			$AnimatedSprite2D.play(\"attack\")
+			$EffectChargedPower/CharacterShade.play(\"attack\")
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	#Espera a animação acabar para mover as peças
+	#var result = board.player.use_power(board.tiles, board.solved_rows)
+	board.player.use_power()
+	emit_signal(\"power_used\") #Envia sinal com os blocos a serem trocados
+	
+	$AnimatedSprite2D.play(\"idle\")
+	$EffectChargedPower/CharacterShade.play(\"idle\")
+	
+	if board.power_charges == 0:
+		$EffectChargedPower.visible = false #Desativa aura do personagem
+	
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kdclb"]
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_flexq"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_kdclb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdguq"]
+shader = ExtResource("1_bfis2")
+shader_parameter/intensity = 1.8
+shader_parameter/speed = 2.0
+shader_parameter/n = SubResource("NoiseTexture2D_flexq")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uwd40"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ydt2o"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw3i6"]
+atlas = ExtResource("3_ifpuj")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dms7g"]
+atlas = ExtResource("3_ifpuj")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h277g"]
+atlas = ExtResource("3_ifpuj")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dobl6"]
+atlas = ExtResource("3_ifpuj")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30ups"]
+atlas = ExtResource("3_ifpuj")
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1dik"]
+atlas = ExtResource("3_ifpuj")
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deman"]
+atlas = ExtResource("4_kiew2")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mylqc"]
+atlas = ExtResource("4_kiew2")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18pq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw3i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dms7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h277g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dobl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30ups")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1dik")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deman")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mylqc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ga5h"]
+
+[node name="Player" type="CharacterBody2D"]
+input_pickable = true
+script = SubResource("GDScript_dhviv")
+
+[node name="EffectChargedPower" type="Node2D" parent="."]
+visible = false
+
+[node name="BackgroundLight" type="Sprite2D" parent="EffectChargedPower"]
+modulate = Color(0.952941, 0.0392157, 0.945098, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_vdguq")
+position = Vector2(0, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nd8de")
+
+[node name="Particles" type="CPUParticles2D" parent="EffectChargedPower"]
+material = SubResource("CanvasItemMaterial_uwd40")
+scale = Vector2(1.2, 1.2)
+amount = 200
+lifetime = 0.3
+preprocess = 0.5
+explosiveness = 0.4
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+damping_min = 200.0
+damping_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.945098, 0.0392157, 0.905882, 1)
+hue_variation_min = 0.2
+hue_variation_max = 0.2
+
+[node name="CharacterShade" type="AnimatedSprite2D" parent="EffectChargedPower"]
+self_modulate = Color(0.811765, 0.207843, 0.913725, 1)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ydt2o")
+scale = Vector2(0.064, 0.064)
+sprite_frames = SubResource("SpriteFrames_18pq0")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, 0)
+scale = Vector2(1, 1.6)
+shape = SubResource("CircleShape2D_5ga5h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.062, 0.062)
+sprite_frames = SubResource("SpriteFrames_18pq0")
+animation = &"attack"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

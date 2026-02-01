@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://o3ngn8x5fefs"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_akkna"]
+[ext_resource type="Script" path="res://scripts/board.gd" id="2_3yvai"]
+[ext_resource type="Texture2D" uid="uid://c0mr8na1f4rde" path="res://sprites/UI/background_level.jpg" id="4_cdo0p"]
+[ext_resource type="FontFile" uid="uid://dfq04ir5jmgnm" path="res://fonts/PixelOperator8-Bold.ttf" id="5_cflb6"]
+[ext_resource type="Texture2D" uid="uid://b0rcetexgbwam" path="res://sprites/BordasMarrom.png" id="7_w6lha"]
+[ext_resource type="Texture2D" uid="uid://36ktqh8o6dl5" path="res://sprites/UI/arrow.png" id="8_7oyd1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctaqn"]
+atlas = ExtResource("7_w6lha")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvj11"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctaqn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq1ux"]
+size = Vector2(80, 80)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p32tp"]
+load_path = "res://.godot/imported/options-button_active.png-5e9bca198a866c11fbe904b20638a9b2.ctex"
+
+[node name="Main" type="Area2D"]
+script = ExtResource("1_akkna")
+
+[node name="Board" type="Area2D" parent="."]
+position = Vector2(5, 52)
+script = ExtResource("2_3yvai")
+
+[node name="Background" type="Sprite2D" parent="Board"]
+texture_filter = 1
+position = Vector2(74, 33)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_cdo0p")
+
+[node name="BoardBorder" type="AnimatedSprite2D" parent="Board"]
+texture_filter = 1
+position = Vector2(40.4, 41.1)
+scale = Vector2(1.58, 1.58)
+sprite_frames = SubResource("SpriteFrames_mvj11")
+
+[node name="BoardCollision" type="CollisionShape2D" parent="Board"]
+position = Vector2(42, 42)
+shape = SubResource("RectangleShape2D_nq1ux")
+
+[node name="BrightsTiles" type="Node2D" parent="Board"]
+
+[node name="FundosPeca" type="Node2D" parent="Board"]
+
+[node name="Frutas" type="Node2D" parent="Board"]
+
+[node name="Timer" type="Timer" parent="Board"]
+one_shot = true
+
+[node name="Timer Game" type="Label" parent="Board"]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 91.0
+offset_right = 77.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("5_cflb6")
+theme_override_font_sizes/font_size = 16
+text = "00:00"
+
+[node name="Character" type="Node2D" parent="."]
+position = Vector2(45, 30)
+
+[node name="Username" type="Node2D" parent="."]
+position = Vector2(36, 1)
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="ReturnShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(10, 10.5)
+scale = Vector2(0.032, 0.032)
+texture = ExtResource("8_7oyd1")
+
+[node name="ReturnButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 515.0
+offset_bottom = 515.0
+scale = Vector2(0.03, 0.03)
+texture_normal = ExtResource("8_7oyd1")
+
+[node name="ConfigShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(75, 10.5)
+scale = Vector2(0.032, 0.032)
+texture = SubResource("CompressedTexture2D_p32tp")
+
+[node name="ConfigButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 67.0
+offset_top = 3.0
+offset_right = 579.0
+offset_bottom = 515.0
+scale = Vector2(0.03, 0.03)
+texture_normal = SubResource("CompressedTexture2D_p32tp")
+
+[connection signal="timeout" from="Board/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Buttons/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Buttons/ConfigButton" to="." method="_on_config_button_pressed"]

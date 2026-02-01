@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://brd2ta0t0382y"]
+
+[ext_resource type="Texture2D" uid="uid://bw0pcj051th17" path="res://sprites/UI/options-button_active.png" id="1_d33m0"]
+
+[node name="Config" type="Control"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ConfigShade" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(5, 5)
+scale = Vector2(0.023, 0.023)
+texture = ExtResource("1_d33m0")
+
+[node name="ConfigButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.02, 0.02)
+texture_normal = ExtResource("1_d33m0")

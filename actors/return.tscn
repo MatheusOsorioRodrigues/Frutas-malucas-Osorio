@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvifxs3kcux8a"]
+
+[ext_resource type="Script" path="res://scripts/return.gd" id="1_5hd0i"]
+[ext_resource type="Texture2D" uid="uid://36ktqh8o6dl5" path="res://sprites/UI/arrow.png" id="1_xljoj"]
+
+[node name="Return" type="Control"]
+custom_minimum_size = Vector2(12, 11)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5hd0i")
+
+[node name="ReturnShade" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(5, 5)
+scale = Vector2(0.023, 0.023)
+texture = ExtResource("1_xljoj")
+
+[node name="ReturnButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.021, 0.021)
+texture_normal = ExtResource("1_xljoj")
+
+[connection signal="button_down" from="ReturnButton" to="." method="_on_return_button_button_down"]

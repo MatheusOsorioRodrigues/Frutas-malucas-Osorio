@@ -1,0 +1,141 @@
+[gd_scene load_steps=18 format=3 uid="uid://e07y8p5xqx2g"]
+
+[ext_resource type="Shader" path="res://shaders/glow_character.gdshader" id="1_ic1ow"]
+[ext_resource type="Texture2D" uid="uid://b8fcftyqyb4ne" path="res://sprites/Others/circle_fade.jpg" id="2_2gtv0"]
+[ext_resource type="Texture2D" uid="uid://b5l1dhbh4bsao" path="res://sprites/Characters/AnimationSheet_Character.png" id="3_64qky"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dkagb"]
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sdnh6"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_dkagb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qkkv"]
+shader = ExtResource("1_ic1ow")
+shader_parameter/intensity = 1.8
+shader_parameter/speed = 2.0
+shader_parameter/n = SubResource("NoiseTexture2D_sdnh6")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xsjr6"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sid7y"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me7rk"]
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo8hg"]
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07jkt"]
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttrb8"]
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muked"]
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rul0k"]
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2ix6"]
+atlas = ExtResource("3_64qky")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0201"]
+atlas = ExtResource("3_64qky")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjwvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me7rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo8hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07jkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttrb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muked")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rul0k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2ix6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0201")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="EffectChargedPower" type="Node2D"]
+
+[node name="BackgroundLight" type="Sprite2D" parent="."]
+modulate = Color(0.952941, 0.0392157, 0.945098, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_4qkkv")
+position = Vector2(0, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_2gtv0")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xsjr6")
+scale = Vector2(1.2, 1.2)
+amount = 200
+lifetime = 0.3
+preprocess = 0.5
+explosiveness = 0.4
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+damping_min = 200.0
+damping_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.945098, 0.0392157, 0.905882, 1)
+hue_variation_min = 0.2
+hue_variation_max = 0.2
+
+[node name="CharacterShade" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.811765, 0.207843, 0.913725, 1)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_sid7y")
+sprite_frames = SubResource("SpriteFrames_fjwvm")
+animation = &"new_animation"
+autoplay = "new_animation"

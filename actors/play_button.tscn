@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2wpnnukvt47r"]
+
+[ext_resource type="Texture2D" uid="uid://3hp2fc78f0mg" path="res://sprites/UI/play-button.png" id="1_bvj6t"]
+
+[node name="PlayButton" type="TextureButton"]
+texture_filter = 1
+offset_left = 10.0
+offset_top = 117.0
+offset_right = 778.0
+offset_bottom = 366.0
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("1_bvj6t")
+ignore_texture_size = true

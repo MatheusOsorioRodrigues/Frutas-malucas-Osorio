@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://m5fhii5ho4lx"]
+
+[ext_resource type="Texture2D" uid="uid://c41n4ryj44ylk" path="res://sprites/Tiles/tileResolucaoOriginal.png" id="1_2di0f"]
+
+[node name="Fundo1" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(10.5, 10.5)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("1_2di0f")

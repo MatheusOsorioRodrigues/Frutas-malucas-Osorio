@@ -1,0 +1,25 @@
+{
+	"size": 5,
+	"time": 240,
+  	"map": [
+		"Grape1", "Orange1", "Apple1", "Grape2", "Apple2",
+		"Apple3", "Orange2", "Empty", "Grape3", "Orange3",
+		"Grape4", "Banana1", "Pear1", "Banana2", "Pear2",
+		"Pear3", "Grape5", "Banana3", "Pear4", "Banana4",
+		"Pear5", "Apple4", "Banana5", "Apple5", "Orange4"
+  	],
+	"solved": [
+		["Apple1", "Apple2", "Apple3", "Apple4", "Apple5"],
+		["Grape1", "Grape2", "Grape3", "Grape4", "Grape5"],
+		["Banana1", "Banana2", "Banana3", "Banana4", "Banana5"],
+		["Pear1", "Pear2", "Pear3", "Pear4", "Pear5"], 
+		["Orange1", "Orange2", "Orange3", "Orange4", "Empty"]
+	],
+	"restrictions": [
+		"free", "free", "free", "free", "free",
+		"free", "free", "free", "free", "free",
+		"free", "free", "free", "free", "free",
+		"free", "free", "free", "free", "free",
+		"free", "free", "free", "free", "free"
+	],
+}

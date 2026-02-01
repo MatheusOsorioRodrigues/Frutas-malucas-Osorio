@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://xgcnqnod4qxq"]
+
+[ext_resource type="Script" path="res://scripts/Options.gd" id="1_6syy0"]
+[ext_resource type="Texture2D" uid="uid://ddf7obwccggcj" path="res://sprites/frutas malucas BK.jpeg" id="2_tj7ii"]
+[ext_resource type="FontFile" uid="uid://dfq04ir5jmgnm" path="res://fonts/PixelOperator8-Bold.ttf" id="3_8u1jn"]
+[ext_resource type="Texture2D" uid="uid://36ktqh8o6dl5" path="res://sprites/UI/arrow.png" id="4_p7ap6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6syy0")
+
+[node name="FrutasMalucasBk" type="Sprite2D" parent="."]
+position = Vector2(45, 80.75)
+scale = Vector2(0.0878907, 0.154785)
+texture = ExtResource("2_tj7ii")
+
+[node name="Mastervolume" type="CheckBox" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -2.0
+offset_top = 13.0
+offset_right = 90.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_8u1jn")
+text = "Mute"
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(46, 138)
+scale = Vector2(0.0776367, 0.0649414)
+texture = ExtResource("4_p7ap6")
+
+[node name="Button" type="TextureButton" parent="Arrow"]
+offset_left = -245.0
+offset_top = -154.0
+offset_right = 244.0
+offset_bottom = 169.0
+ignore_texture_size = true
+
+[connection signal="pressed" from="Mastervolume" to="." method="_on_mastervolume_pressed"]
+[connection signal="toggled" from="Mastervolume" to="." method="_on_mastervolume_toggled"]
+[connection signal="pressed" from="Arrow/Button" to="." method="_on_button_pressed"]

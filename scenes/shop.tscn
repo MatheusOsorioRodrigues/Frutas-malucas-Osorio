@@ -1,0 +1,433 @@
+[gd_scene load_steps=29 format=3 uid="uid://d100ujb8o8s2o"]
+
+[ext_resource type="Texture2D" uid="uid://b756dmd6t05m1" path="res://sprites/BG/shopbackground.png" id="1_fxyhc"]
+[ext_resource type="Script" path="res://scripts/shop.gd" id="2_ksl7k"]
+[ext_resource type="PackedScene" uid="uid://bvifxs3kcux8a" path="res://actors/return.tscn" id="2_q3uoe"]
+[ext_resource type="PackedScene" uid="uid://brd2ta0t0382y" path="res://actors/config.tscn" id="3_oe1ic"]
+[ext_resource type="FontFile" uid="uid://dfq04ir5jmgnm" path="res://fonts/PixelOperator8-Bold.ttf" id="4_ip5my"]
+[ext_resource type="Script" path="res://scripts/return.gd" id="5_uo7gr"]
+[ext_resource type="Texture2D" uid="uid://ddfovh00cd3p3" path="res://sprites/UI/LeftArrow.png" id="5_w22r0"]
+[ext_resource type="Texture2D" uid="uid://dg2fxq1v4w0iv" path="res://sprites/UI/coin1_16x16.png" id="5_x7gsh"]
+[ext_resource type="Texture2D" uid="uid://c4mse58sfbl26" path="res://sprites/UI/RightArrow.png" id="6_07bou"]
+[ext_resource type="Texture2D" uid="uid://c480fshiyyrur" path="res://sprites/UI/EmptyButton.png" id="9_newke"]
+[ext_resource type="Texture2D" uid="uid://i1olku3hbp8o" path="res://sprites/Others/shop_border.png" id="9_olidg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q427l"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d15ty"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiwc6"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgwhq"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijr5k"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6yuo"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hn38"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca13x"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fefy"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6fdr"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6l2g"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu811"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7w5k"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwgd4"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cyru"]
+atlas = ExtResource("5_x7gsh")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4q2x4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q427l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d15ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgwhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijr5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6yuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hn38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca13x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fefy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6fdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6l2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu811")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7w5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwgd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cyru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgmb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q427l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d15ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgwhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijr5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6yuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hn38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca13x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fefy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6fdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6l2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu811")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7w5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwgd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cyru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 900.0
+offset_bottom = 1600.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_fxyhc")
+stretch_mode = 6
+
+[node name="ShopTitle" type="Label" parent="."]
+texture_filter = 1
+offset_left = 36.0
+offset_top = 20.5
+offset_right = 56.0
+offset_bottom = 26.5
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 4
+text = "Loja"
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -4.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+script = ExtResource("2_ksl7k")
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+alignment = 1
+
+[node name="Return" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource("2_q3uoe")]
+custom_minimum_size = Vector2(60, 12)
+layout_mode = 2
+
+[node name="Config" parent="MarginContainer/VBoxContainer/Buttons" instance=ExtResource("3_oe1ic")]
+layout_mode = 2
+
+[node name="CharacterNav" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 18)
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Control" parent="MarginContainer/VBoxContainer/CharacterNav"]
+custom_minimum_size = Vector2(12, 11)
+layout_mode = 2
+script = ExtResource("5_uo7gr")
+
+[node name="PreviousButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CharacterNav/Left"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.05, 0.05)
+texture_normal = ExtResource("5_w22r0")
+
+[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/CharacterNav"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 5
+text = "persona"
+horizontal_alignment = 1
+
+[node name="Right" type="Control" parent="MarginContainer/VBoxContainer/CharacterNav"]
+custom_minimum_size = Vector2(10, 11)
+layout_mode = 2
+
+[node name="NextButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CharacterNav/Right"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.05, 0.05)
+texture_normal = ExtResource("6_07bou")
+
+[node name="ContentArea" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="BorderContent" type="Sprite2D" parent="MarginContainer/VBoxContainer/ContentArea"]
+texture_filter = 1
+position = Vector2(43, 22)
+scale = Vector2(1.604, 1.02)
+texture = ExtResource("9_olidg")
+
+[node name="Character" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentArea"]
+custom_minimum_size = Vector2(30, 60)
+layout_mode = 2
+
+[node name="CharacterLevel" type="Label" parent="MarginContainer/VBoxContainer/ContentArea/Character"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 4
+text = "Lv. 0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/ContentArea/Character"]
+layout_mode = 2
+
+[node name="ContentText" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentArea"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/ContentArea/ContentText"]
+visible = false
+texture_filter = 1
+position = Vector2(25, 22)
+texture = ExtResource("9_olidg")
+
+[node name="PowerTitle" type="Label" parent="MarginContainer/VBoxContainer/ContentArea/ContentText"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 4
+text = "Lorem Ipsum"
+metadata/_edit_use_anchors_ = true
+
+[node name="PowerDesc" type="Label" parent="MarginContainer/VBoxContainer/ContentArea/ContentText"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 3
+text = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ContainerBuy" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ContentArea/ContentText"]
+custom_minimum_size = Vector2(50, 14)
+layout_mode = 2
+
+[node name="BuyControl" type="Control" parent="MarginContainer/VBoxContainer/ContentArea/ContentText/ContainerBuy"]
+layout_mode = 2
+
+[node name="BuyButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ContentArea/ContentText/ContainerBuy/BuyControl"]
+texture_filter = 1
+layout_mode = 2
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 766.0
+offset_bottom = 246.0
+scale = Vector2(0.07, 0.07)
+texture_normal = ExtResource("9_newke")
+
+[node name="Text" type="Label" parent="MarginContainer/VBoxContainer/ContentArea/ContentText/ContainerBuy/BuyControl"]
+texture_filter = 1
+layout_mode = 2
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 51.0
+offset_bottom = 11.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 4
+text = "Desbloquear"
+horizontal_alignment = 1
+
+[node name="Coins" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ContentArea/ContentText/ContainerBuy/BuyControl"]
+texture_filter = 1
+position = Vector2(11, 9)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_4q2x4")
+autoplay = "default"
+
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/ContentArea/ContentText/ContainerBuy/BuyControl"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.3
+offset_right = 49.0
+offset_bottom = 13.3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 6
+text = "10"
+
+[node name="SelectChar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/SelectChar"]
+layout_mode = 2
+
+[node name="SelectCharButton" type="TextureButton" parent="MarginContainer/VBoxContainer/SelectChar/Control"]
+texture_filter = 1
+layout_mode = 2
+offset_right = 768.0
+offset_bottom = 249.0
+scale = Vector2(0.05, 0.05)
+texture_normal = ExtResource("9_newke")
+
+[node name="Text" type="Label" parent="MarginContainer/VBoxContainer/SelectChar/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -8.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 17.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 3
+text = "Selecionar"
+horizontal_alignment = 1
+
+[node name="Coins" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CoinAnimation" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/Coins"]
+texture_filter = 1
+position = Vector2(5, 8)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_pgmb3")
+autoplay = "default"
+
+[node name="LabelCoins" type="Label" parent="MarginContainer/VBoxContainer/Coins/CoinAnimation"]
+texture_filter = 1
+offset_left = 7.0
+offset_top = -7.0
+offset_right = 55.0
+offset_bottom = 16.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ip5my")
+theme_override_font_sizes/font_size = 14
+text = "100"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CharacterNav/Left/PreviousButton" to="MarginContainer/VBoxContainer" method="_on_previous_button_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/CharacterNav/Right/NextButton" to="MarginContainer/VBoxContainer/CharacterNav/Right" method="_on_return_button_button_down"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CharacterNav/Right/NextButton" to="MarginContainer/VBoxContainer" method="_on_next_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContentArea/ContentText/ContainerBuy/BuyControl/BuyButton" to="MarginContainer/VBoxContainer" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SelectChar/Control/SelectCharButton" to="MarginContainer/VBoxContainer" method="_on_select_char_button_pressed"]

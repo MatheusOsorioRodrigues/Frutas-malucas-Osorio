@@ -1,0 +1,19 @@
+{
+	"size": 3,
+	"time": 60,
+	"map": [
+		"Grape1", "Banana1", "Apple1", 
+		"Empty", "Grape2", "Apple2",
+		"Banana2", "Apple3", "Grape3"
+	],
+	"solved": [
+		["Apple1", "Apple2", "Apple3"],
+		["Grape1", "Grape2", "Grape3"],
+		["Banana1", "Banana2", "Empty"]
+	],
+	"restrictions": [
+		"free", "free", "free",
+		"free", "free", "free",
+		"locked", "free", "free"
+	],
+}

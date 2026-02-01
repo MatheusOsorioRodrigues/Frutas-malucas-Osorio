@@ -1,0 +1,247 @@
+[gd_scene load_steps=22 format=3 uid="uid://cqmd1qmmodljl"]
+
+[ext_resource type="Texture2D" uid="uid://b5l1dhbh4bsao" path="res://sprites/Characters/AnimationSheet_Character.png" id="1_7m3ta"]
+[ext_resource type="Shader" path="res://shaders/glow_character.gdshader" id="1_pmlwa"]
+[ext_resource type="Texture2D" uid="uid://b8fcftyqyb4ne" path="res://sprites/Others/circle_fade.jpg" id="2_5aq00"]
+
+[sub_resource type="GDScript" id="GDScript_dhviv"]
+script/source = "extends CharacterBody2D
+
+@export var characterPath: String
+@export var characterTexture: AnimatedSprite2D
+var board: Area2D
+signal power_used(wrong: int, candidate: int)
+
+
+func _ready() -> void:
+	$AnimatedSprite2D.play(\"idle\")
+	$EffectChargedPower/CharacterShade.play(\"idle\")
+	
+func use_power(tiles, solved) -> Array:
+	for row in range(board.grid_size):
+		# Obtém o nome da fruta esperada para esta linha a partir do solved
+		var expected_fruit = board.extract_fruit_name(solved[row][0])
+		for col in range(board.grid_size):
+			var index = row * board.grid_size + col
+			var tile = tiles[index]
+			var actual_fruit = board.extract_fruit_name(tile.name)
+		
+			# Caso especial para \"Empty\" na última posição da quarta linha
+			if row == board.grid_size - 1 and col == board.grid_size - 1 and actual_fruit == \"Empty\":
+				continue  # É permitido, então ignora
+		
+			# Procura pela fruta certa para o lugar onde a primeira fora de lugar foi encontrada
+			if actual_fruit != expected_fruit:
+				var candidate_index = -1
+				#Começa de traz para frente, para buscar a fruta mais distante
+				for i in range(len(tiles) - 1, -1, -1): 
+					var candidate_row = i / board.grid_size
+					var candidate_fruit = board.extract_fruit_name(tiles[i].name)
+					# 'candidate_row' ignora caso a fruta já esteja na linha correta
+					if candidate_fruit == expected_fruit and candidate_row != row:
+						candidate_index = i
+						break
+				
+				if candidate_index != -1:
+					board.swap_tiles(index, candidate_index, \"Player\")
+					return [-1, -1]
+					#return [index, candidate_index]
+				else:
+					return [index,  -1]
+
+	return [-1, -1]  # Todos estão na ordem correta
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if board != null and board.power_charges > 0: #Caso o board tenha carregado e o poder ainda não foi usado
+			#Inicia animação de ataque
+			$AnimatedSprite2D.play(\"attack\")
+			$EffectChargedPower/CharacterShade.play(\"attack\")
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	#Espera a animação acabar para mover as peças
+	var result:Array = board.player.use_power(board.tiles, board.solved_rows)
+	emit_signal(\"power_used\") #Envia sinal com os blocos a serem trocados
+	
+	$AnimatedSprite2D.play(\"idle\")
+	$EffectChargedPower/CharacterShade.play(\"idle\")
+	if board.power_charges == 0:
+		$EffectChargedPower.visible = false #Desativa aura do personagem
+	
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kdclb"]
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_flexq"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_kdclb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdguq"]
+shader = ExtResource("1_pmlwa")
+shader_parameter/intensity = 1.8
+shader_parameter/speed = 2.0
+shader_parameter/n = SubResource("NoiseTexture2D_flexq")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uwd40"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ydt2o"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4htcm"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(0, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekqmf"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(32, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjeus"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(64, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqk2p"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(96, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc77t"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(128, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g8s6"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(160, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4c1d"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(192, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f51o3"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(224, 257, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7it7"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnrsw"]
+atlas = ExtResource("1_7m3ta")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18pq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4htcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekqmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjeus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqk2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc77t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g8s6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4c1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f51o3")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7it7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnrsw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ga5h"]
+
+[node name="Player" type="CharacterBody2D"]
+input_pickable = true
+script = SubResource("GDScript_dhviv")
+
+[node name="EffectChargedPower" type="Node2D" parent="."]
+visible = false
+
+[node name="BackgroundLight" type="Sprite2D" parent="EffectChargedPower"]
+modulate = Color(0.952941, 0.0392157, 0.945098, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_vdguq")
+position = Vector2(0, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_5aq00")
+
+[node name="Particles" type="CPUParticles2D" parent="EffectChargedPower"]
+material = SubResource("CanvasItemMaterial_uwd40")
+scale = Vector2(1.2, 1.2)
+amount = 200
+lifetime = 0.3
+preprocess = 0.5
+explosiveness = 0.4
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+damping_min = 200.0
+damping_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.945098, 0.0392157, 0.905882, 1)
+hue_variation_min = 0.2
+hue_variation_max = 0.2
+
+[node name="CharacterShade" type="AnimatedSprite2D" parent="EffectChargedPower"]
+self_modulate = Color(0.811765, 0.207843, 0.913725, 1)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ydt2o")
+scale = Vector2(1.1, 1.1)
+sprite_frames = SubResource("SpriteFrames_18pq0")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(1, 1.6)
+shape = SubResource("CircleShape2D_5ga5h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_18pq0")
+animation = &"idle"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://gb0eueohmx2h"]
+
+[ext_resource type="Texture2D" uid="uid://c16ip86seu03y" path="res://sprites/Fruits/AppleNL_HL.png" id="1_a731k"]
+
+[node name="Fruit" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(10.5, 10.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_a731k")
+region_enabled = true
+region_rect = Rect2(-4, -4, 40, 40)

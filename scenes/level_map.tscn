@@ -1,0 +1,359 @@
+[gd_scene load_steps=35 format=3 uid="uid://c0lioeafqocdo"]
+
+[ext_resource type="Script" path="res://scripts/scrollContainer.gd" id="1_2qmvg"]
+[ext_resource type="Script" path="res://scripts/SelectLevelCollision.gd" id="1_gfs2k"]
+[ext_resource type="Script" path="res://scripts/SelectLevel.gd" id="1_kqe0w"]
+[ext_resource type="Texture2D" uid="uid://borb4fo03xbct" path="res://sprites/PathLevel/path02.png" id="3_wsisv"]
+[ext_resource type="Texture2D" uid="uid://oooil3wqsujd" path="res://sprites/PathLevel/path01.png" id="4_vdgqw"]
+[ext_resource type="Texture2D" uid="uid://cnthb8ija6354" path="res://sprites/PathLevel/path03n.png" id="4_x7u8j"]
+[ext_resource type="Texture2D" uid="uid://36ktqh8o6dl5" path="res://sprites/UI/arrow.png" id="7_5574j"]
+[ext_resource type="FontFile" uid="uid://dfq04ir5jmgnm" path="res://fonts/PixelOperator8-Bold.ttf" id="9_6un7u"]
+[ext_resource type="Texture2D" uid="uid://c6v2gr5ugto5m" path="res://sprites/UI/shop-button.png" id="9_obsiw"]
+[ext_resource type="Texture2D" uid="uid://dg2fxq1v4w0iv" path="res://sprites/UI/coin1_16x16.png" id="10_fwub2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gxon2"]
+radius = 6.79569
+height = 18.0668
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_koexe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85a7c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_46c1b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6y0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ip6bt"]
+
+[sub_resource type="Theme" id="Theme_xymsr"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_koexe")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_85a7c")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_46c1b")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_i6y0s")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_ip6bt")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p32tp"]
+load_path = "res://.godot/imported/options-button_active.png-5e9bca198a866c11fbe904b20638a9b2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbvmu"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5fdt"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb320"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuvxa"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2d36"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34ue7"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xqac"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4w7b"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kct3x"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re05s"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yde33"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px3m8"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2ghe"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cba8k"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be02t"]
+atlas = ExtResource("10_fwub2")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m4x05"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbvmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5fdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb320")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuvxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2d36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34ue7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xqac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4w7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kct3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re05s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yde33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px3m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2ghe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cba8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be02t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Select" type="Area2D"]
+scale = Vector2(1.01754, 1.0332)
+script = ExtResource("1_kqe0w")
+
+[node name="SelectLevels" type="Node2D" parent="."]
+script = ExtResource("1_gfs2k")
+
+[node name="Level01" type="Area2D" parent="SelectLevels"]
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level01"]
+position = Vector2(53.0692, 129.694)
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level02" type="Area2D" parent="SelectLevels"]
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level02"]
+position = Vector2(33.4139, 95.8188)
+rotation = -0.0827796
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level03" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level03"]
+position = Vector2(53.4407, 59.5937)
+rotation = 0.0064698
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level04" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level04"]
+position = Vector2(30.2645, 19.6702)
+rotation = -0.0715104
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level05" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level05"]
+position = Vector2(64.8, -18)
+rotation = -0.0715104
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level06" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level06"]
+position = Vector2(32.0819, -60.6256)
+rotation = -0.0715104
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level07" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level07"]
+position = Vector2(52.1981, -105.956)
+rotation = -0.0715104
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level08" type="Area2D" parent="SelectLevels"]
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level08"]
+position = Vector2(30.4655, -154.843)
+rotation = -0.349066
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level09" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level09"]
+position = Vector2(53.2253, -205.618)
+rotation = -0.0715104
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level10" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level10"]
+position = Vector2(24.2027, -250.419)
+rotation = -0.0715104
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="Level11" type="Area2D" parent="SelectLevels"]
+rotation = -0.0103048
+
+[node name="Collision" type="CollisionShape2D" parent="SelectLevels/Level11"]
+position = Vector2(44.3817, -300.565)
+rotation = 0.0976628
+scale = Vector2(1.88, 0.642857)
+shape = SubResource("CapsuleShape2D_gxon2")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_right = 90.0
+offset_bottom = 160.0
+size_flags_vertical = 3
+theme = SubResource("Theme_xymsr")
+horizontal_scroll_mode = 0
+script = ExtResource("1_2qmvg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="PathPart3" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_x7u8j")
+expand_mode = 5
+
+[node name="PathPart2" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_wsisv")
+expand_mode = 5
+
+[node name="PathPart1" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_vdgqw")
+expand_mode = 5
+
+[node name="Leaves" type="Node2D" parent="."]
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="ReturnShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(13, 13.5)
+scale = Vector2(0.042, 0.042)
+texture = ExtResource("7_5574j")
+
+[node name="ReturnButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 515.0
+offset_bottom = 515.0
+scale = Vector2(0.04, 0.04)
+texture_normal = ExtResource("7_5574j")
+
+[node name="ConfigShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(77, 13.5)
+scale = Vector2(0.042, 0.042)
+texture = SubResource("CompressedTexture2D_p32tp")
+
+[node name="ConfigButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 67.0
+offset_top = 3.0
+offset_right = 579.0
+offset_bottom = 515.0
+scale = Vector2(0.04, 0.04)
+texture_normal = SubResource("CompressedTexture2D_p32tp")
+
+[node name="ShopShade" type="Sprite2D" parent="Buttons"]
+modulate = Color(0, 0, 0, 0.278431)
+texture_filter = 1
+position = Vector2(76, 141.309)
+scale = Vector2(0.039, 0.039)
+texture = ExtResource("9_obsiw")
+
+[node name="ShopButton" type="TextureButton" parent="Buttons"]
+texture_filter = 1
+offset_left = 65.2172
+offset_top = 130.0
+offset_right = 673.217
+offset_bottom = 737.0
+scale = Vector2(0.038, 0.038)
+texture_normal = ExtResource("9_obsiw")
+
+[node name="CoinsCounter" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 19.6552
+offset_top = 138.405
+offset_right = 59.6552
+offset_bottom = 178.405
+scale = Vector2(0.899911, 0.893228)
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("9_6un7u")
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 13
+text = "000"
+
+[node name="CoinsAnim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(10.8104, 144.212)
+sprite_frames = SubResource("SpriteFrames_m4x05")
+autoplay = "default"
+frame_progress = 0.932904
+
+[connection signal="pressed" from="Buttons/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Buttons/ConfigButton" to="." method="_on_config_button_pressed"]
+[connection signal="pressed" from="Buttons/ShopButton" to="." method="_on_shop_button_pressed"]

@@ -1,0 +1,211 @@
+[gd_scene load_steps=27 format=3 uid="uid://qerps3ikqe5v"]
+
+[ext_resource type="Script" path="res://scripts/chest_scene.gd" id="1_htpic"]
+[ext_resource type="Texture2D" uid="uid://b3vkj0hgkr8w7" path="res://sprites/Chests/CLOSED/BACKLIGHT/chests-01.png" id="1_ur1jo"]
+[ext_resource type="Texture2D" uid="uid://cwrf740oj1kpv" path="res://sprites/UI/background_level.jpeg" id="2_2hkjo"]
+[ext_resource type="Texture2D" uid="uid://7yqbv147ur2c" path="res://sprites/Chests/OPEN_GOLD/BACKLIGHT/chests-01.png" id="2_lgms1"]
+[ext_resource type="Texture2D" uid="uid://b5joa11pmnn0y" path="res://sprites/Chests/OPEN_GOLD_OVERFLOW/BACKLIGHT/chests-01.png" id="3_xl8b7"]
+[ext_resource type="Texture2D" uid="uid://36ktqh8o6dl5" path="res://sprites/UI/arrow.png" id="5_1y5ds"]
+[ext_resource type="Texture2D" uid="uid://dg2fxq1v4w0iv" path="res://sprites/UI/coin1_16x16.png" id="7_jsmbb"]
+[ext_resource type="FontFile" uid="uid://dfq04ir5jmgnm" path="res://fonts/PixelOperator8-Bold.ttf" id="8_sdrmt"]
+[ext_resource type="Script" path="res://scripts/label_coin.gd" id="9_dt6uh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy0sw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ur1jo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lgms1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xl8b7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.99
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q427l"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d15ty"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiwc6"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgwhq"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijr5k"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6yuo"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hn38"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca13x"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fefy"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6fdr"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6l2g"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu811"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7w5k"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwgd4"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cyru"]
+atlas = ExtResource("7_jsmbb")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhbbk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q427l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d15ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgwhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijr5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6yuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hn38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca13x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fefy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6fdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6l2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu811")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7w5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwgd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cyru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Chest Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_htpic")
+metadata/_edit_use_anchors_ = true
+
+[node name="BgForest" type="Sprite2D" parent="."]
+position = Vector2(47, 82)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_2hkjo")
+
+[node name="ChestAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(47, 63)
+scale = Vector2(0.0150579, 0.0202668)
+sprite_frames = SubResource("SpriteFrames_sy0sw")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="chestButtons" type="Node2D" parent="."]
+position = Vector2(1, 9)
+
+[node name="ChestButton" type="TextureButton" parent="chestButtons"]
+offset_left = 70.0
+offset_top = 146.0
+offset_right = 582.0
+offset_bottom = 658.0
+rotation = -3.13742
+scale = Vector2(0.0934464, 0.0716358)
+texture_normal = ExtResource("5_1y5ds")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(22, 104)
+sprite_frames = SubResource("SpriteFrames_jhbbk")
+autoplay = "default"
+frame_progress = 0.889466
+
+[node name="LabelCoin" type="Label" parent="AnimatedSprite2D"]
+texture_filter = 1
+offset_left = 7.0
+offset_top = -7.0
+offset_right = 55.0
+offset_bottom = 16.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_sdrmt")
+theme_override_font_sizes/font_size = 16
+script = ExtResource("9_dt6uh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 133.0
+offset_bottom = 29.0
+scale = Vector2(0.708476, 1.26917)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_sdrmt")
+theme_override_font_sizes/font_size = 14
+text = "Parabéns"
+
+[connection signal="animation_finished" from="ChestAnim" to="." method="_on_chest_anim_animation_finished"]
+[connection signal="pressed" from="chestButtons/ChestButton" to="." method="_on_chest_button_pressed"]
